@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" href="img/Untitled_2_design-removebg-preview.png">
+</head>
+<body>
+    <img src="img/1-removebg-preview.png" alt="Google Search" >
+
+    <!-- Google CSE script (make sure cx value is correct) -->  
+    <script async src="https://cse.google.com/cse.js?cx=f1181e40062434e37"></script>  
+
+    <!-- Google search box and results -->  
+    <div class="gcse-search"></div>  
+
+    <!-- Add the glow effect as a background -->
+    <div class="background-glow"></div>
+    <div class="background-glow-shadow"></div>
+
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0;
+            background: rgb(59, 14, 104);
+            background: radial-gradient(circle, rgba(59, 14, 104, 1) 0%, rgba(26, 8, 78, 1) 100%);
+            position: relative;
+        }
+
+        /* Background glow container */
+        .background-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1; /* Keep it behind the content */
+        }
+
+        /* Animated glow effects */
+        .background-glow::before,
+        .background-glow::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+            z-index: 1;
+            box-shadow: 0 0 50px 50px #1c084f;
+        }
+
+        .background-glow::before {
+            width: 600px;
+            height: 600px;
+            background-color: #1a084e;
+        }
+
+        .background-glow::after {
+            width: 400px;
+            height: 400px;
+            background-color: #2f1e5f;
+            animation: circle-size 0.8s linear infinite alternate;
+        }
+
+        /* Shadow for rotating effect */
+        .background-glow-shadow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            border-radius: 100%;
+            z-index: -1;
+            box-shadow: 10px -55px 30px 15px #823ca6, 24px -10px 47px 10px #aab3d2, -21px -25px 97px 10px #5acee3, 51px 5px 17px 10px #1b7d8f, 3px 2px 77px 10px #f30bf5;
+            animation: shadow-rotate 1.5s linear infinite;
+            transform-origin: center;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Animating the size of the circle */
+        @keyframes circle-size {
+            from {
+                width: 400px;
+                height: 400px;
+            }
+            to {
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        /* Rotating the shadow */
+        @keyframes shadow-rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .gsc-results-wrapper-overlay {
+            width: 97%;
+            height: 100%;
+            left: 0%;
+            top: 0%;
+            border-radius: 0px;
+            background: rgba(0, 0, 0, 0.151);
+        }
+        
+
+        .gsc-webResult.gsc-result {
+            border: 1px solid #00000000;
+        }
+
+        .gs-webResult .gs-snippet, .gs-fileFormatType {
+            color: #fff;
+        }
+
+        .gsc-tabHeader.gsc-tabhInactive {
+            color: #fff;
+        }
+
+        .gsc-orderby-label {
+            color: #00ff00;
+        }
+
+        .gsc-selected-option-container {
+            border-radius: 20px;
+        }
+        .gsc-control-cse {
+     background-color: #ffffff00; 
+     border: 1px solid #fff; 
+     border-radius: 50px;
+}   .gsc-control-wrapper-cse {
+    width: 100%;
+    border-radius: 50px;
+}
+.gsc-search-button-v2 {
+    font-size: 0;
+    padding: 6px 27px;
+    width: auto;
+    vertical-align: middle;
+    border: 1px solid #667;
+    border-radius: 50px;
+    border-color: #3079ed;
+    background-color: #4d90fe00;
+    background-image: linear-gradient(top, #4d90fe, #4787ed);
+}input.gsc-input {
+    width: 100%;
+    padding: 0px;
+    border: none;
+    margin: 0px;
+    height: auto;
+    background: url('img/1-removebg-preview.png') left center no-repeat #fff;
+    background-size: contain; /* Ensure the image fits properly */
+    outline: none;
+    border-radius: 50px;
+}
+
+.gsc-input-box {
+    border: 1px solid #dfe1e5;
+    border-radius: 50px;
+    background: #ffffffe5;
+}
+    </style>
+
+<script>
+    class AnimatedScene {
+    constructor(container) {
+        this.container = container;
+        this.world = new World();
+        this.init();
+    }
+
+    init() {
+        this.setupEnvironment();
+        this.animate();
+    }
+
+    setupEnvironment() {
+        const light = new Light();
+        this.world.sceneAdd(light.ambient);
+        this.world.sceneAdd(light.sun);
+        this.setupLightBalls(light.lights);
+        const composition = new Composition({
+            sideLength: 10,
+            amount: 15,
+            radius: 6,
+            thickness: 2,
+            offset: 0.3
+        });
+        this.world.sceneAdd(composition.tubes);
+    }
+
+    setupLightBalls(lights) {
+        const radius = 12.4;
+        lights.forEach((group) => {
+            this.world.sceneAdd(group);
+            this.createAnimation(group);
+        });
+    }
+
+    createAnimation(group) {
+        const tl = new TimelineMax({ yoyo: true });
+        tl
+            .set(group.position, {
+                x: THREE.Math.randInt(-2, 2) * radius + radius * 0.5,
+                z: THREE.Math.randInt(-2, 2) * radius + radius * 0.5
+            })
+            .to(group.position, 2, {
+                y: 18,
+                ease: Linear.easeNone
+            })
+            .to(
+                group.children[0],
+                1.2,
+                {
+                    intensity: 4.0,
+                    distance: 18,
+                    ease: Linear.easeNone
+                },
+                "-=1.2"
+            );
+
+        // Additional animation logic...
+    }
+
+    animate() {
+        this.world.renderer.render(this.world.scene, this.world.camera);
+        requestAnimationFrame(this.animate.bind(this));
+    }
+}
+
+// Usage
+const container = document.querySelector('.gsc-results-wrapper-overlay');
+const animatedScene = new AnimatedScene(container);
+
+</script>  
+    
+    
+      
+
+
+<script>
+    // Function to add HTML .gsc-orderby-label into the div with class '.gsc-orderby-label'
+function addHTMLContent() {
+    // Select the first element with the class 'gsc-tabsArea'
+    const contentDiv = document.querySelector('.gsc-orderby-label');
+  
+    // Define the HTML to be added
+    const newHTML = `
+      <h1>hello it work or ...</h1>    `;
+  
+    // Insert the HTML into the div
+    contentDiv.innerHTML += newHTML; // Use += to add it at the end
+  }
+  
+  // Call the function to add the HTML .gsc-orderby-label
+  addHTMLContent();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

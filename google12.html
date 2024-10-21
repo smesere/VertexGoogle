@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Google Custom Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <!-- Your custom container for image -->
+  <div class="custom-container">
+    <img src="img/5-removebg-preview.png" alt="Custom Image">
+  </div>
+
+  <!-- Google CSE script (make sure cx value is correct) -->
+  <script async src="https://cse.google.com/cse.js?cx=f1181e40062434e37"></script>
+
+  <!-- Google search box and results -->
+  <div class="gcse-search"></div>
+
+  <!-- Custom styles -->
+  <style>
+    /* Custom container to separate custom styles from Google CSE */
+    .custom-container {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    img {
+      width: 30%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Prevent global styles from affecting Google CSE layout */
+    .gcse-search, .gsc-results-wrapper, .gsc-result {
+      display: block !important; /* Ensure Google's search elements use block layout */
+    }
+
+    /* Avoid affecting the gcse-search or results */
+    .gcse-search * {
+      all: unset; /* Reset any inherited styles */
+    }
+
+    /* Prevent background from causing display issues */
+    html {
+      background-color: #000;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Google Custom Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Full height and width for body */
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #000; /* Set background color */
+            color: #fff; /* Set text color for visibility */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        /* Style for the search input */
+        .gcse-search input.gsc-input {
+            width: 100%; /* Full width input */
+            padding: 10px; /* Padding for input */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Round corners */
+            font-size: 1.2em; /* Increase font size */
+            background-color: #fff; /* Background for input */
+            color: #000; /* Text color for input */
+        }
+
+        /* Style for results */
+        .gsc-results-wrapper {
+            position: absolute; /* Position results absolutely */
+            top: 0; /* Align to top */
+            left: 0; /* Align to left */
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+            color: #fff; /* Text color */
+            padding: 20px; /* Padding for results */
+            display: none; /* Hide initially */
+            overflow-y: auto; /* Scroll for results */
+        }
+
+        /* Show results when there are results */
+        .gsc-results-wrapper.show {
+            display: block; /* Show results */
+        }
+
+        /* Hide default Google CSE styles */
+        .gcse-search, .gsc-results-wrapper, .gsc-result {
+            display: block !important; /* Ensure Google's search elements use block layout */
+        }
+    </style>
+</head>
+<body>
+    <!-- Google CSE script (make sure cx value is correct) -->
+    <script async src="https://cse.google.com/cse.js?cx=f1181e40062434e37"></script>
+
+    <!-- Google search box and results -->
+    <div class="gcse-search"></div>
+    <div class="gsc-results-wrapper" id="gsc-results"></div>
+
+    <script>
+        // Google CSE callback
+        window.__gcse = {
+            callback: function() {
+                const resultsWrapper = document.getElementById('gsc-results');
+                const searchResults = document.querySelector('.gsc-results-wrapper');
+                
+                // Show results when available
+                searchResults.addEventListener('DOMSubtreeModified', function() {
+                    if (searchResults.childElementCount > 0) {
+                        resultsWrapper.classList.add('show');
+                    } else {
+                        resultsWrapper.classList.remove('show'); // Hide if no results
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search Example</title>
+</head>
+<body>
+    <div class="gsc-orderby-label"> <!-- Ensure this element is present -->
+        <!-- Search box will be added here -->
+    </div>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the .gsc-orderby-label element
+            const orderbyLabel = document.querySelector('.gsc-orderby-label');
+
+            // Check if the orderbyLabel element exists
+            if (orderbyLabel) {
+                console.log('.gsc-orderby-label found'); // Log confirmation
+
+                // Create the Google search box HTML
+                const searchBox = document.createElement('div');
+                searchBox.className = 'gcse-search';
+
+                // Append the search box to the .gsc-orderby-label
+                orderbyLabel.appendChild(searchBox);
+                console.log('Search box added'); // Log confirmation
+
+                // Create and append the Google search script
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://cse.google.com/cse.js?cx=f1181e40062434e37';
+
+                // Append the script to the body
+                document.body.appendChild(script);
+                console.log('Search script added'); // Log confirmation
+
+                // Optionally, you can set up a listener to initialize Google CSE once the script loads
+                script.onload = function() {
+                    console.log('Google CSE script loaded');
+                };
+            } else {
+                console.error('.gsc-orderby-label element not found'); // Log error if not found
+            }
+        });
+    </script>
+</body>
+</html>
