@@ -8,7 +8,9 @@
     <link rel="icon" href="img/Untitled_2_design-removebg-preview.png">
 </head>
 <body>
+    <a href="https://smesere.github.io/VertexGoogle/">
     <img src="img/1-removebg-preview.png" alt="Google Search" >
+</a>
 
     <!-- Google CSE script (make sure cx value is correct) -->  
     <script async src="https://cse.google.com/cse.js?cx=f1181e40062434e37"></script>  
@@ -402,5 +404,47 @@ function addHTMLContent() {
 });
 
   </script>
+
+  <style>
+  .gsc-input {
+    background: none !important; /* Remove any background */
+    background-image: none !important; /* Specifically remove the background image */
+    background-image: url("img/branding.png") !important;  /* Add the background image */
+    content: "search on vertex" !important;
+}
+.gsc-input-box {
+    border: 1px solid #ffffff;
+    background: #ffffff00;
+}
+
+  </style>
+  <style>
+    @keyframes colorGlow {
+        0% {
+            box-shadow: 0 0 20px rgba(255, 66, 66, 1), 0 0 40px rgba(255, 66, 66, 0.5);
+        }
+        20% {
+            box-shadow: 0 0 20px rgba(255, 66, 66, 1), 0 0 40px rgba(255, 66, 66, 0.5);
+        }
+        40% {
+            box-shadow: 0 0 20px rgba(25, 132, 132, 1), 0 0 40px rgba(25, 132, 132, 0.5);
+        }
+        60% {
+            box-shadow: 0 0 20px rgba(255, 15, 15, 1), 0 0 40px rgba(255, 15, 15, 0.5);
+        }
+        80% {
+            box-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 40px rgba(255, 255, 0, 0.5);
+        }
+        100% {
+            box-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 40px rgba(255, 255, 0, 0.5);
+        }
+    }
+    
+    .gsib_a {
+        border-radius: 50px;
+        animation: colorGlow 10s infinite ease-in-out; /* Animation duration set to 10 seconds */
+    }
+    </style>
+    
 </body>
 </html>
